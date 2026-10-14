@@ -44,6 +44,19 @@ threshold settings are not exposed through DYA. Existing ten static combos
 remain; runtime combos add separately configurable entries. Studio locking
 remains disabled, matching the original configuration.
 
+### Compatibility fixes
+
+Prospector status advertisements run on the right central, which includes the
+left peripheral battery. The left half does not advertise a separate keyboard
+status packet because ZMK peripheral builds do not include modifier-state events.
+
+The threshold mouse-layer processor is vendored from
+[gohanda11/zmk-input-processor-threshold-temp-layer](https://github.com/gohanda11/zmk-input-processor-threshold-temp-layer)
+(commit `a68fedf50dd3b25d7aa594776c26b943fe41cfbf`), retaining its MIT/SPDX headers.
+Its layer activation/deactivation calls use DYA's non-locking API (`false`),
+matching the upstream temporary-layer processor. Threshold and timeout defaults
+remain unchanged.
+
 ### Flashing after migration
 
 1. Download the firmware artifact from the successful build on this branch.
