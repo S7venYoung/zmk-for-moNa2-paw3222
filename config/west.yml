@@ -3,7 +3,7 @@ manifest:
     - name: cormoran
       url-base: https://github.com/cormoran
     - name: prospector
-      url-base: https://github.com/t-ogura
+      url-base: https://github.com/S7venYoung
     - name: sayu-hub
       url-base: https://github.com/sayu-hub
     # - name: badjeff    # <-- PMW3610
@@ -24,7 +24,7 @@ manifest:
       import: app/west.yml
     - name: prospector-zmk-module
       remote: prospector
-      revision: v2.0.0
+      revision: de4b078856cd50fb3b01a69fb6e1c13c54230286
       path: modules/prospector-zmk-module
     # - name: zmk-pmw3610-driver
     #   remote: badjeff
