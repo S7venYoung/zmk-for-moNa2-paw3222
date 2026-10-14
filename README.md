@@ -16,6 +16,49 @@ This version uses the **PAW3222** optical sensor for trackball input.
 - Rear magnets
 - PAW3222 trackball sensor
 
+## DYA / Zephyr 4.1 migration
+
+This configuration keeps **the right half as central** and the left half as a
+BLE peripheral. Connect the right half by USB to
+[DYA Studio](https://studio.dya.cormoran.works/).
+
+The ZMK source and reusable build workflow are pinned to
+[`cormoran/zmk` `e5c9b691`](https://github.com/cormoran/zmk/tree/e5c9b6915b56801193e359dd9bad4a167ce0d1b8)
+from `main+dya`, using Zephyr 4.1 and the `xiao_ble//zmk` board target.
+**There is no upstream v0.4 release tag at the time of this migration; the
+pinned source's VERSION file still reports 0.3.0.** This is the newer development
+baseline, not an official ZMK 0.4 release.
+
+DYA features on the right half:
+
+- Key remapping, persistent runtime macros and runtime combos.
+- BLE profile management, device information and settings RPC.
+- Encoder clockwise/counterclockwise bindings per layer, initially scroll down/up.
+- Trackball speed, rotation and axis inversion through the `mouse` processor.
+- Scroll speed and direction through the `scroll` processor, initially 1/10
+  speed with Y inversion on layer 5.
+
+The PAW3222 hardware CPI stays at 950. The existing movement-threshold mouse
+layer (100 counts, layer 3, 500 ms) remains configured in device tree; these
+threshold settings are not exposed through DYA. Existing ten static combos
+remain; runtime combos add separately configurable entries. Studio locking
+remains disabled, matching the original configuration.
+
+### Flashing after migration
+
+1. Download the firmware artifact from the successful build on this branch.
+2. Flash `mona2_settings_reset` to **both halves**, then flash
+   `mona2_left_dya` to the left and `mona2_right_dya` to the right.
+   Reset removes saved Bluetooth bonds and keymap/settings; export settings
+   first if you need them.
+3. Remove the old host Bluetooth pairing and pair the right half again.
+4. Connect the right half over USB and open DYA Studio. Save runtime edits to
+   persist them across reboot.
+
+Hardware acceptance: check every key, left encoder, pointer direction, threshold
+mouse-layer activation, layer-5 scroll direction, and DYA save/reboot restore.
+A successful CI build alone does not verify these hardware behaviors.
+
 ## Keymap
 
 ![moNa2 keymap](keymap-drawer/mona2.svg)

@@ -1,7 +1,7 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: prospector
       url-base: https://github.com/t-ogura
     - name: sayu-hub
@@ -18,8 +18,9 @@ manifest:
       url-base: https://github.com/gohanda11
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: v0.3
+      remote: cormoran
+      # main+dya: Zephyr 4.1 / hardware model v2 development baseline
+      revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8
       import: app/west.yml
     - name: prospector-zmk-module
       remote: prospector
@@ -30,15 +31,47 @@ manifest:
     #   revision: main
     - name: zmk-driver-paw3222
       remote: sekigon-gonnoc
-      revision: main
+      revision: df652881be2520bde4f64ab6ca35e4c5708f4f9b
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: v0.3
+      revision: e6b467792a1dabef8cfa5c9fd26bfefc9c16662b
     - name: zmk-input-processor-keybind
       remote: zettaface
       revision: main
     - name: zmk-input-processor-threshold-temp-layer
       remote: gohanda11
       revision: main
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: c6a7fef3a3be3d3ace5de9a4b0628c6418cd1f3f
+      import: true
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: 8cedd2dd9f04e19ea5a17b94914dd47a09d8db11
+      import: true
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: 38530962eb7061b60efcb98e84585cfb1f0cb6de
+      import: true
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: d9490e7b5d41c516221d131241009e81740efcee
+      import: true
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: 57738cc4fc6ba80e82a7ac57741a0339cb186cd4
+      import: true
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: 78f86df9e6c5edaf57bef3ccbd7f360cfdf49291
+      import: true
+    - name: zmk-behavior-runtime-sensor-rotate
+      remote: cormoran
+      revision: 8b1125ed676c1f5e14145d217984f33d0ebdcef4
+      import: true
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: decf628d7ce5ed95b520c650824c28ea9de649c1
+      import: true
   self:
     path: config
