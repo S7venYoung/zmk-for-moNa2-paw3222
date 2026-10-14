@@ -1,3 +1,4 @@
+# Build right central, left peripheral, and settings reset images.
 name: Build moNa2 DYA firmware
 on: [push, pull_request, workflow_dispatch]
 
